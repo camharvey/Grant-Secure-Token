@@ -1,2 +1,2 @@
 # Grant-Secure-Token
-A workflow designed to grant secure tokens to a user or local admin prior to enabling FV2 encryption on a macbook
+The aim of this project is to grant secure tokens to either a user or the local administrator account with a secure token enabled user.
