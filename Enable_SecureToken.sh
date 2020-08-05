@@ -65,14 +65,14 @@ if [[ "$token_status" -eq 1 && "$admin_token_status" -eq 0 ]]; then
     #Check that logged in user is an admin
     if id -Gn $userName | grep -q -w admin; then
         echo "$userName is an admin. Enabling Secure Token for local admin."
-        /usr/sbin/sysadminctl -adminUser $userName -adminPass $userPass -secureTokenOn $adminUser -password $adminPass
+        /usr/sbin/sysadminctl -adminUser $userName -adminPassword $userPass -secureTokenOn $adminUser -password $adminPass
     else
         echo "$userName is not an admin. Temporarily elevating $userName to admin."
         /usr/sbin/dseditgroup -o edit -a $userName -t user admin
         echo "Checking that $userName is now an admin"
         if id -Gn $username | grep -q -w admin; then
             echo "$username now a temporary admin. Enabling Secure Token for local admin."
-            /usr/sbin/sysadminctl -adminUser $userName -adminPass $userPass -secureTokenOn $adminUser -password $adminPass
+            /usr/sbin/sysadminctl -adminUser $userName -adminPassword $userPass -secureTokenOn $adminUser -password $adminPass
             #Disabling user as admin
             /usr/sbin/dseditgroup -o edit -d $userName -t user admin
         else
